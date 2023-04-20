@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LoginDetails to Email</title>
+<link rel="stylesheet" href="style.css">
+    </head>
+<body>
+    <div class="container">
+        <form onsubmit="sendEmail(); reset(); return false;">
+            <h3>Kontakto</h3>
+            <input type="text" id="name" placeholder="Emri Juaj" required>
+            <input type="email" id="email" placeholder="Emaili Juaj" required>
+            <input type="tel" id="phone" placeholder="Numri Juaj" required>
+            <textarea id="message" rows="4" placeholder="Si mund  tju ndihmojme"></textarea>
+            <button type="submit">Dergo</button>
+        </form>
+    </div>
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+    <script>
+        function sendEmail() {
+            Email.send({
+                SecureToken: "7c769996-d0c5-46a7-8f08-1bd9a0c4ba76",
+                
+                To: 'ermalcokaa@gmail.com',
+                From: document.getElementById("email").value,
+                Subject: "New Message",
+                Body: "Name: " + document.getElementById("name").value
+                    + "<br> Email: " + document.getElementById("email").value
+                    + "<br> : Numri: " + document.getElementById("phone").value
+                    + "<br> : Mesazhi: " + document.getElementById("message").value
+            }).then(
+                message => alert(message)
+            );
+        }
+    </script>
+
+</body>
+</html>
